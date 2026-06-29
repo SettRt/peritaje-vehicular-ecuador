@@ -1,0 +1,460 @@
+:root {
+  --navy: #061a35;
+  --navy-2: #0e2a52;
+  --gold: #c9a646;
+  --bg: #f4f7fb;
+  --surface: #ffffff;
+  --line: #d7dee9;
+  --text: #111827;
+  --muted: #64748b;
+  --green: #167c45;
+  --amber: #a76b00;
+  --red: #b3261e;
+  --shadow: 0 18px 44px rgba(6, 26, 53, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+.app-shell {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  min-height: 100vh;
+}
+
+.sidebar {
+  background: var(--navy);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 22px;
+}
+
+.brand {
+  align-items: center;
+  display: flex;
+  gap: 12px;
+}
+
+.brand-mark {
+  align-items: center;
+  background: var(--gold);
+  border-radius: 8px;
+  color: var(--navy);
+  display: grid;
+  font-weight: 900;
+  height: 46px;
+  place-items: center;
+  width: 46px;
+}
+
+.brand span,
+.agent-card span,
+.panel-heading span,
+.eyebrow {
+  color: var(--muted);
+  display: block;
+  font-size: 0.86rem;
+}
+
+.sidebar .brand span,
+.sidebar .agent-card span {
+  color: #b8c7d9;
+}
+
+.nav {
+  display: grid;
+  gap: 8px;
+}
+
+.nav-item,
+button {
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.nav-item {
+  background: transparent;
+  color: #dbe7f5;
+  padding: 12px 14px;
+  text-align: left;
+}
+
+.nav-item.active,
+.nav-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.agent-card {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  display: grid;
+  gap: 10px;
+  margin-top: auto;
+  padding: 14px;
+}
+
+.agent-card input,
+.field input,
+.field textarea,
+.quick-form input {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--text);
+  outline: none;
+  padding: 12px;
+  width: 100%;
+}
+
+.main {
+  display: grid;
+  gap: 18px;
+  padding: 24px;
+}
+
+.topbar {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.topbar h1 {
+  color: var(--navy);
+  margin: 2px 0 0;
+}
+
+.status-chip,
+.badge {
+  border-radius: 999px;
+  color: white;
+  display: inline-flex;
+  font-size: 0.86rem;
+  font-weight: 800;
+  padding: 8px 12px;
+}
+
+.status-chip {
+  background: var(--navy-2);
+}
+
+.view {
+  display: none;
+  gap: 18px;
+}
+
+.view.active {
+  display: grid;
+}
+
+.metrics {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.metric,
+.panel,
+.report {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.metric {
+  padding: 18px;
+}
+
+.metric span {
+  color: var(--muted);
+}
+
+.metric strong {
+  color: var(--navy);
+  display: block;
+  font-size: 2rem;
+  margin-top: 6px;
+}
+
+.metric.danger strong {
+  color: var(--red);
+}
+
+.content-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.content-grid.wide {
+  grid-template-columns: 0.9fr 1.1fr;
+}
+
+.panel {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+}
+
+.panel-heading {
+  align-items: start;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.panel-heading h2 {
+  color: var(--navy);
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.quick-form,
+.actions,
+.viewer-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.primary,
+.secondary,
+.icon-button {
+  font-weight: 800;
+  padding: 12px 14px;
+}
+
+.primary {
+  background: var(--navy);
+  color: white;
+}
+
+.secondary,
+.icon-button {
+  background: #e8eef7;
+  color: var(--navy);
+}
+
+.upload-zone {
+  align-items: center;
+  border: 1px dashed #9aacbf;
+  border-radius: 8px;
+  display: flex;
+  gap: 14px;
+  justify-content: space-between;
+  padding: 18px;
+}
+
+.upload-zone p {
+  color: var(--muted);
+  margin: 6px 0 0;
+}
+
+.preview {
+  border-radius: 8px;
+  max-height: 220px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.hidden {
+  display: none;
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+}
+
+.field span {
+  color: var(--navy);
+  font-weight: 800;
+}
+
+textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+.viewer-wrap {
+  background: linear-gradient(135deg, #e8eef7, #ffffff);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  height: 360px;
+  overflow: hidden;
+}
+
+#vehicleCanvas {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.detail {
+  border-bottom: 1px solid var(--line);
+  padding: 8px 0;
+}
+
+.detail span {
+  color: var(--muted);
+  display: block;
+  font-size: 0.84rem;
+}
+
+.detail strong {
+  color: var(--navy);
+}
+
+.legal-empty {
+  color: var(--muted);
+}
+
+.legal-box {
+  display: grid;
+  gap: 10px;
+}
+
+.badge.clear {
+  background: var(--green);
+}
+
+.badge.warning {
+  background: var(--amber);
+}
+
+.badge.critical {
+  background: var(--red);
+}
+
+.photo-grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.photo-tile {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  display: grid;
+  gap: 8px;
+  padding: 10px;
+}
+
+.photo-tile input {
+  max-width: 100%;
+}
+
+.list {
+  display: grid;
+  gap: 10px;
+}
+
+.list-item {
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+}
+
+.list-item strong {
+  color: var(--navy);
+}
+
+.report {
+  padding: 28px;
+}
+
+.report header {
+  border-bottom: 4px solid var(--gold);
+  margin-bottom: 18px;
+  padding-bottom: 12px;
+  text-align: center;
+}
+
+.report h2 {
+  color: var(--navy);
+  margin: 0;
+}
+
+.report-content {
+  line-height: 1.65;
+}
+
+.report-actions {
+  justify-content: flex-end;
+}
+
+@media (max-width: 980px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: static;
+  }
+
+  .metrics,
+  .content-grid,
+  .content-grid.wide,
+  .details,
+  .photo-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media print {
+  .sidebar,
+  .topbar,
+  .report-actions,
+  .nav,
+  .actions,
+  .viewer-controls {
+    display: none !important;
+  }
+
+  .app-shell,
+  .main,
+  .view,
+  #informe {
+    display: block !important;
+  }
+
+  .panel,
+  .metrics,
+  #dashboard,
+  #consulta,
+  #historial {
+    display: none !important;
+  }
+
+  .report {
+    border: 0;
+    box-shadow: none;
+  }
+}

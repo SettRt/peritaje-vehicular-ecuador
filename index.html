@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Peritaje Vehicular Ecuador</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">PN</div>
+          <div>
+            <strong>Peritaje Ecuador</strong>
+            <span>Policia Nacional</span>
+          </div>
+        </div>
+
+        <nav class="nav">
+          <button class="nav-item active" data-view="dashboard">Panel</button>
+          <button class="nav-item" data-view="consulta">Consulta</button>
+          <button class="nav-item" data-view="historial">Historial</button>
+          <button class="nav-item" data-view="informe">Informe</button>
+        </nav>
+
+        <div class="agent-card">
+          <span>Agente</span>
+          <input id="agentName" value="Agente de servicio" />
+          <input id="agentUnit" value="Policia Nacional del Ecuador" />
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Sistema de inspeccion vehicular</p>
+            <h1 id="pageTitle">Panel operativo</h1>
+          </div>
+          <div class="status-chip" id="globalStatus">Modo demo listo</div>
+        </header>
+
+        <section class="view active" id="dashboard">
+          <div class="metrics">
+            <article class="metric">
+              <span>Total consultas</span>
+              <strong id="metricTotal">0</strong>
+            </article>
+            <article class="metric">
+              <span>Sin novedades</span>
+              <strong id="metricClear">0</strong>
+            </article>
+            <article class="metric">
+              <span>Con observaciones</span>
+              <strong id="metricWarn">0</strong>
+            </article>
+            <article class="metric danger">
+              <span>Criticos</span>
+              <strong id="metricCritical">0</strong>
+            </article>
+          </div>
+
+          <div class="content-grid">
+            <article class="panel">
+              <div class="panel-heading">
+                <h2>Nueva consulta</h2>
+                <span>ALPR manual/demo</span>
+              </div>
+              <div class="quick-form">
+                <input id="quickPlate" placeholder="ABC1234" maxlength="8" />
+                <button class="primary" id="quickDemo">Consultar demo</button>
+              </div>
+            </article>
+
+            <article class="panel">
+              <div class="panel-heading">
+                <h2>Ultimas consultas</h2>
+                <span>Registros locales</span>
+              </div>
+              <div class="list" id="latestList"></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="view" id="consulta">
+          <div class="content-grid wide">
+            <article class="panel">
+              <div class="panel-heading">
+                <h2>Reconocimiento de placa</h2>
+                <span>Camara, imagen o ingreso manual</span>
+              </div>
+
+              <div class="upload-zone" id="dropZone">
+                <input id="imageInput" type="file" accept="image/*" hidden />
+                <div>
+                  <strong>Seleccionar imagen del vehiculo</strong>
+                  <p>La version web permite adjuntar imagen y confirmar la placa manualmente.</p>
+                </div>
+                <button class="secondary" id="pickImage">Elegir imagen</button>
+              </div>
+              <img id="platePreview" class="preview hidden" alt="Vista previa de placa" />
+
+              <label class="field">
+                <span>Placa detectada o manual</span>
+                <input id="plateInput" placeholder="ABC1234" maxlength="8" />
+              </label>
+
+              <div class="actions">
+                <button class="primary" id="consultDemo">Probar con placa demo</button>
+                <button class="secondary" id="consultManual">Consultar placa</button>
+              </div>
+            </article>
+
+            <article class="panel">
+              <div class="panel-heading">
+                <h2>Modelo 3D representativo</h2>
+                <span id="vehicleCategoryLabel">Sin vehiculo seleccionado</span>
+              </div>
+              <div class="viewer-wrap">
+                <canvas id="vehicleCanvas"></canvas>
+              </div>
+              <div class="viewer-controls">
+                <button class="icon-button" id="rotateModel">Rotar 360</button>
+                <button class="icon-button" id="lightModel">Cambiar luz</button>
+                <button class="icon-button" id="resetCamera">Centrar</button>
+              </div>
+            </article>
+          </div>
+
+          <div class="content-grid">
+            <article class="panel">
+              <div class="panel-heading">
+                <h2>Informacion general</h2>
+                <span>Datos normalizados</span>
+              </div>
+              <div class="details" id="vehicleDetails"></div>
+            </article>
+
+            <article class="panel">
+              <div class="panel-heading">
+                <h2>Estado legal</h2>
+                <span>Resumen automatico</span>
+              </div>
+              <div id="legalStatus" class="legal-empty">Realice una consulta para ver el estado.</div>
+            </article>
+          </div>
+
+          <article class="panel">
+            <div class="panel-heading">
+              <h2>Peritaje fotografico y observaciones</h2>
+              <span>Registro asociado a la consulta</span>
+            </div>
+            <div class="photo-grid" id="photoGrid"></div>
+            <label class="field">
+              <span>Observaciones del agente</span>
+              <textarea id="observations" placeholder="Vehiculo con golpe frontal, vidrios polarizados, sin placa delantera..."></textarea>
+            </label>
+            <div class="actions">
+              <button class="primary" id="saveRecord">Guardar consulta e informe</button>
+              <button class="secondary" id="printReport">Imprimir informe</button>
+            </div>
+          </article>
+        </section>
+
+        <section class="view" id="historial">
+          <article class="panel">
+            <div class="panel-heading">
+              <h2>Historial de consultas</h2>
+              <span>Guardado local en este navegador</span>
+            </div>
+            <div class="list" id="historyList"></div>
+          </article>
+        </section>
+
+        <section class="view" id="informe">
+          <article class="report" id="reportDocument">
+            <header>
+              <h2>INFORME DE CONSULTA VEHICULAR</h2>
+              <span>Policia Nacional del Ecuador</span>
+            </header>
+            <div id="reportContent" class="report-content">
+              No existe un informe generado todavia.
+            </div>
+          </article>
+          <div class="actions report-actions">
+            <button class="primary" id="printReportAlt">Imprimir / Guardar PDF</button>
+            <button class="secondary" id="downloadJson">Descargar respaldo JSON</button>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
